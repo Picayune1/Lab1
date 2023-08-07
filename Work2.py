@@ -18,11 +18,10 @@ ns = ns.to(device)
 #for julia set use j
 size = (z.size(dim=0),z.size(dim=1))
 j = torch.full(size,complex(0.28,0.008))
-print(j)
 #Mandelbrot Set
 for i in range(200):
     #Compute the new values of z: z^2 + x
-
+    #for julia set use j, for mandlebrot use z
     zs_ = zs*zs + j
     #Have we diverged with this new value?
     not_diverged = torch.abs(zs_) < 4.0
