@@ -1,5 +1,21 @@
 import torch
 import numpy as np
+import random
 import matplotlib.pyplot as plt
 # Device configuration
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
+zs = torch.zeros((400,400))
+#start at center
+zs[int(zs.size(dim=0)/2)][int(zs.size(dim=1)/2)] = 1
+for i in range(5):
+    up = torch.roll(zs,-1*(3**i),0)
+    down = torch.roll(zs,1*(3**i),0)
+    left = torch.roll(zs,-1*(3**i),1)
+    right = torch.roll(zs,1*(3**i),1)
+    zs = zs + up
+    zs = zs + down
+    zs = zs + left
+    zs = zs + right
+plt.imshow((zs).cpu().numpy())
+plt.tight_layout()
+plt.show()
