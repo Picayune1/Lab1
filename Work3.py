@@ -1,3 +1,4 @@
+#Creating the Viscek cross
 import torch
 import numpy as np
 import random
@@ -14,6 +15,7 @@ for i in range(6):
     down = torch.roll(zs,1*(3**i),0)
     left = torch.roll(zs,-1*(3**i),1)
     right = torch.roll(zs,1*(3**i),1)
+    #utilising parrelism with pytorch
     zs = zs + up
     zs = zs + down
     zs = zs + left
