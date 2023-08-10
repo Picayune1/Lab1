@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 # Device configuration
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
 #Y, X = np.mgrid[-0.75:-0.55:0.00005, -0.4:-0.25:0.00005]
 Y, X = np.mgrid[-1.3:1.3:0.005, -2:1:0.005]
 # load into PyTorch tensors
@@ -18,11 +18,12 @@ ns = ns.to(device)
 #for julia set use j
 size = (z.size(dim=0),z.size(dim=1))
 j = torch.full(size,complex(0.28,0.008))
+j = j.to(device)
 #Mandelbrot Set
 for i in range(200):
     #Compute the new values of z: z^2 + x
     #for julia set use j, for mandlebrot use z
-    zs_ = zs*zs + j
+    zs_ = zs*zs + z
     #Have we diverged with this new value?
     not_diverged = torch.abs(zs_) < 4.0
     #Update variables to compute
