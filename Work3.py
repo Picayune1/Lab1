@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 device = torch.device('cpu')
 zs = torch.zeros((400,400))
 #start at center
+#use dimensions 800x and 800y with for loop of 6
+#or use dimensions 400x and 400y with for loop of 5
 zs[int(zs.size(dim=0)/2)][int(zs.size(dim=1)/2)] = 1
 for i in range(5):
     up = torch.roll(zs,-1*(3**i),0)
